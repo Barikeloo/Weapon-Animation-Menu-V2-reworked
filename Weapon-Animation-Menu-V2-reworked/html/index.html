@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/gh/hung1001/font-awesome-pro@4cac1a6/css/all.css" rel="stylesheet" type="text/css"/>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="/html/app.js"></script>
+    <link rel="stylesheet" href="/html/main.css">
+    <title>Weapon Animation Menu V2 Redesigned by Barikeloo#9927</title>
+</head>
+<body>
+    <div id="container" class="no-seleccionable">
+        <div class="header">
+            <div class="apuntar-estilo" id="apuntar"><i id="icono-apuntar" class="fas fa-crosshairs"></i></div>
+            <div class="disparar-estilo" id="disparar"><i id="icono-disparar" class="fas fa-raygun"></i></div>
+        </div>
+        <div class="cuadro-animaciones-apuntar">
+            <div class="cuadro-animacion" id="DefaultAim">
+                <div class="estilo-policia">
+                    <span class="titulo-animacion">Default</span>
+                </div>
+            </div>
+            <div class="cuadro-animacion" id="GangsterAim">
+              <div class="estilo-policia">
+                  <span class="titulo-animacion">Gangster</span>
+              </div>
+            </div>
+            <div class="cuadro-animacion-ultimo" id="HillBillyAim">
+              <div class="estilo-policia">
+                  <span class="titulo-animacion">Loco2</span>
+              </div>
+            </div>
+        </div>
+        <div class="cuadro-animaciones-disparar">
+          <div class="cuadro-animacion" id="DefaultHolster">
+              <div class="estilo-policia">
+                  <span class="titulo-animacion">Default</span>
+              </div>
+          </div>
+          <div class="cuadro-animacion" id="BackHolster">
+            <div class="estilo-policia">
+                <span class="titulo-animacion">Family</span>
+            </div>
+          </div>
+          <div class="cuadro-animacion" id="CopHolster">
+            <div class="estilo-policia">
+                <span class="titulo-animacion">Cop</span>
+            </div>
+          </div>
+          <div class="cuadro-animacion" id="FrontHolster">
+            <div class="estilo-policia">
+                <span class="titulo-animacion">Military</span>
+            </div>
+          </div>
+          <div class="cuadro-animacion" id="FrontAgressiveHolster">
+            <div class="estilo-policia">
+                <span class="titulo-animacion">Loco1</span>
+            </div>
+          </div>
+          <div class="cuadro-animacion-ultimo" id="LegHolster">
+            <div class="estilo-policia">
+                <span class="titulo-animacion">Loco2</span>
+            </div>
+          </div>
+        </div>
+    </div>
+    <script>
+      let currentDroppable = null;
+    
+      container.onmousedown = function(event) {
+    
+          let shiftX = event.clientX - container.getBoundingClientRect().left;
+          let shiftY = event.clientY - container.getBoundingClientRect().top;
+    
+          container.style.position = 'absolute';
+          container.style.zIndex = 1000;
+          document.body.append(container);
+    
+          moveAt(event.pageX, event.pageY);
+    
+          function moveAt(pageX, pageY) {
+            container.style.left = pageX - shiftX + 'px';
+            container.style.top = pageY - shiftY + 'px';
+          }
+    
+          function onMouseMove(event) {
+            moveAt(event.pageX, event.pageY);
+    
+            container.hidden = true;
+            let elemBelow = document.elementFromPoint(event.clientX, event.clientY);
+            container.hidden = false;
+    
+            if (!elemBelow) return;
+    
+            let droppableBelow = elemBelow.closest('.droppable');
+            if (currentDroppable != droppableBelow) {
+              if (currentDroppable) {
+                leaveDroppable(currentDroppable);
+              }
+              currentDroppable = droppableBelow;
+              if (currentDroppable) {
+                enterDroppable(currentDroppable);
+              }
+            }
+          }
+    
+          document.addEventListener('mousemove', onMouseMove);
+    
+          container.onmouseup = function() {
+            document.removeEventListener('mousemove', onMouseMove);
+            container.onmouseup = null;
+          };
+    
+        };
+    
+        function enterDroppable(elem) {
+          elem.style.background = 'pink';
+        }
+    
+        function leaveDroppable(elem) {
+          elem.style.background = '';
+        }
+    
+        container.ondragstart = function() {
+          return false;
+        };
+        // 
+        const copyToClipboard = str => {
+          const el = document.createElement('textarea');
+          el.value = str;
+          document.body.appendChild(el);
+          el.select();
+          document.execCommand('copy');
+          document.body.removeChild(el);
+        };
+    
+        window.addEventListener('message', (event) => {
+        if (event.data.type === 'clipboard') {
+        copyToClipboard(event.data.data);
+        }
+      });
+      
+    </script>
+</body>
+</html>

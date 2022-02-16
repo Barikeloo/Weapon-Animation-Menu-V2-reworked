@@ -1,0 +1,110 @@
+@font-face {
+    font-family: Rubik;
+    src: url(../html/Rubik-Regular.ttf);
+}
+body {
+    overflow: hidden;
+    /* background-image: url(https://cdn.discordapp.com/attachments/853651746181349456/943504936518430841/218_20211117174951_1.png);
+    background-size: cover; */
+}
+#container {
+    right: 12%;
+    top: 30%;
+    position: absolute;
+    background-color: rgb(0, 0, 0);
+    width: 17vw;
+    max-height: 25vw;
+    border-radius: .4vw;
+    box-shadow: 0 0 .3vw black;
+}
+.header {
+    background-color: rgb(15, 15, 15);
+    width: 17vw;
+    height: 4vw;
+    border-bottom: .1vw inset white;
+    border-radius: .4vw .4vw 0 0 ;
+}
+i {
+    font-size: 2.5vw;
+    color: aliceblue;
+}
+.apuntar-estilo {
+    float: left;
+    width: 8.5vw;
+    height: 4vw;
+    transition: .5s;
+    border-radius: .4vw 0 0 0;
+}
+.disparar-estilo {
+    width: 8.5vw;
+    height: 4vw;
+    float: right;
+    border-radius: 0 .4vw 0 0;
+}
+.apuntar-estilo:hover{
+    cursor: pointer;
+    background-color: rgb(44, 44, 44);
+    transition: .5s;
+}
+.disparar-estilo:hover{
+    cursor: pointer;
+    background-color: rgb(44, 44, 44);
+    transition: .5s;
+}
+#icono-apuntar {
+    padding: 1vw;
+    transform: translateX(42%);
+}
+#icono-disparar {
+    padding: 1vw;
+    transform: translateX(42%);
+}
+.cuadro-animaciones-apuntar{
+    display: none;
+    width: 17vw;
+    max-height: 21vw;
+    border-radius: 0 0 .4vw .4vw;
+}
+.cuadro-animaciones-disparar{
+    display: none;
+    width: 17vw;
+    max-height: 21vw;
+    border-radius: 0 0 .4vw .4vw;
+}
+.cuadro-animacion {
+    width: 17vw;
+    height: 3vw;
+    transition: .5s;
+}
+.titulo-animacion {
+    font-family: Rubik;
+    padding: 1vw;
+    position: absolute;
+    color: white;
+    font-size: 1vw;
+    text-shadow: 0 0 .3vw #ccc;
+}
+.cuadro-animacion:hover {
+    background-color: rgba(22, 22, 22, 0.63);
+    transition: .5s;
+    cursor: pointer;
+}
+.cuadro-animacion-ultimo {
+    width: 17vw;
+    height: 3vw;
+    transition: .5s;
+}
+.cuadro-animacion-ultimo:hover {
+    background-color: rgba(22, 22, 22, 0.63);
+    transition: .5s;
+    border-radius: 0 0 .4vw .4vw;
+}
+.fondo {
+    background-color: rgb(44, 44, 44);
+}
+.no-seleccionable {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none; 
+}
